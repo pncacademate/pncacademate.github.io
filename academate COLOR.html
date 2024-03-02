@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Academate</title>
+    <style>
+
+	
+
+
+.header {
+background-color: #426028;
+padding: 2px;
+text-align: center;
+color: white;
+font-family: Helvetica;
+width: 110%;
+margin-left: -8px;
+margin-top: -8px;
+}
+
+
+
+body{
+    background-image: url(academate1.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.inpot {
+position: absolute;
+top: 250;
+left: 53%;
+transform: translateX(-50%);
+text-align: center;
+margin-top: 20px;
+border: 5px solid rgba(0, 128, 0, 0.8);
+background-color: rgb(141, 209, 124); 
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+padding: 10px;
+max-width: 210px;
+border-radius: 15px;
+font-family: Arial, Helvetica, sans-serif
+}
+
+.input-container input,
+.input-container button {
+margin: 3px;
+}
+
+.header nav a {
+text-align: center;
+color: white;
+}
+
+.header hr {
+border: none;
+height: 1px;
+background-color: white;
+margin-bottom: 1px;
+}
+
+a {
+margin-right: 15px;
+text-decoration: none;
+}
+
+.done {
+text-decoration: line-through;
+}
+
+ul {
+list-style-type: none;
+padding: 0;
+}
+
+#deadlineInput {
+display: block;
+margin: 10px auto;
+}
+
+li {
+position: relative;
+border: 1px solid #426028;
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+margin: 5px 0;
+padding: 10px;
+word-wrap: break-word;
+max-width: 500px;
+border-radius: 20px;
+background: #426028;
+color: white;
+
+}
+
+#todoInput {
+display: block;
+margin: 10px auto;
+width: 70%;
+margin-left: 0px;
+position: absolute;
+}
+
+
+#addButton {
+display: block;
+margin: 10px auto;
+background-color: #426028; 
+color: white; 
+border: none;
+padding: 8px 15px;
+border-radius: 5px;
+cursor: pointer;
+}
+
+#addButton:hover {
+background-color: #5A8036; 
+}
+
+#timeInput {
+display: block;
+margin: 10px auto;
+}
+
+.time {
+font-size: 0.8em;
+}
+
+.close {
+float: right;
+cursor: pointer;
+
+
+}
+
+.deadline {
+position: relative;
+font-size: smaller;
+}
+
+.small-text {
+    font-size: 0.8em; 
+}
+#fontSizeInput{
+width: 15%;
+margin-top: 10px;
+margin-left: 159px;
+position: relative;
+}
+
+
+
+
+
+
+
+    </style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+</head>
+
+
+
+
+<body>
+
+  <div class="header">
+    <h1 style="font-family: Helvetica; text-align: center; color: white; "> Academate </h1>
+    <nav>
+      <a href="academate COLOR.html" class= "button";>Home</a>
+      <a href="Help.html">Help</a>
+      <a href="academate DARK.html">Dark Mode</a>
+    </nav>
+    <hr>
+  </div>
+<div class="inpot">
+    <input id="todoInput" type="text" placeholder="New task...">
+    <input id="fontSizeInput" type="number" placeholder="16" min="0">
+    <input id="deadlineInput" type="datetime-local">
+    <input id="timeInput" type="number" placeholder="Allotted Time(mins)" min="0">
+    <button id="addButton" onclick="newElement()">Add</button>
+   
+
+</div>
+   <div> <br><br><br><br><br><br><br><br><br><br><br><br>  
+    <div id="taskContainer">
+    <ul id="todoList" class="sortable"></ul> </div>
+
+
+  
+
+
+	
+
+
+
+    <script>
+
+function formatDateTime(dateTimeString) {
+    if (!dateTimeString) {
+        return "(No Specified Deadline)";
+    }
+
+    const options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: true
+    };
+    const dateTime = new Date(dateTimeString);
+    return new Intl.DateTimeFormat('en-US', options).format(dateTime);
+}
+
+function newElement() {
+    var inputValue = document.getElementById("todoInput").value.trim();
+    var deadlineValue = document.getElementById("deadlineInput").value;
+    var timeValue = document.getElementById("timeInput").value;
+    var fontSizeValue = document.getElementById("fontSizeInput").value;
+
+    if (inputValue === '') {
+        document.getElementById("todoInput").style.border = "1px solid black";
+        return;
+    }
+
+    document.getElementById("todoInput").style.border = "";
+
+    var formattedDeadline = formatDateTime(deadlineValue);
+    var formattedTime = timeValue ? " (Allotted Time: " + timeValue + " minutes)" : " (No Allotted Time)";
+    var formattedTask = inputValue + "<br><br>Task Time: " + formattedTime + " | Deadline at: " + formattedDeadline;
+
+    var li = document.createElement("li");
+    li.style.fontFamily = "Verdana"; // Default font family
+    li.style.fontSize = fontSizeValue + "px"; // Apply the font size to the list item
+
+    var taskDiv = document.createElement("div");
+    taskDiv.className = "task-container";
+    taskDiv.innerHTML = formattedTask;
+
+    li.appendChild(taskDiv);
+
+    var span = document.createElement("SPAN");
+    var txt = document.createTextNode("\u00D7");
+    span.className = "close";
+    span.appendChild(txt);
+    taskDiv.appendChild(span);
+
+    span.onclick = function () {
+        var div = this.parentElement.parentElement;
+        div.remove();
+    };
+
+    li.onclick = function () {
+        this.classList.toggle('done');
+    };
+
+    var todoList = document.getElementById("todoList");
+    todoList.appendChild(li);
+
+    document.getElementById("todoInput").value = "";
+    document.getElementById("deadlineInput").value = "";
+    document.getElementById("timeInput").value = "";
+    document.getElementById("fontSizeInput").value = ""; 
+}
+
+
+
+
+
+document.getElementById("addButton").addEventListener("click", newElement);
+
+
+document.getElementById("todoInput").addEventListener("keypress", function(event) {
+    if (event.keyCode === 13) {
+        newElement();
+    }
+});
+
+
+$(document).ready(function() {
+    $( "#todoList.sortable" ).sortable({
+        update: function(event, ui) {
+            var updatedTaskOrder = $(this).sortable('toArray').map(function(taskId) {
+                return $("#" + taskId).text(); 
+            });
+            console.log(updatedTaskOrder);
+        }
+    });
+    $( "#todoList.sortable" ).disableSelection();
+});
+
+
+
+
+    </script>
+</body>
+</html>
