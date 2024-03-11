@@ -10,14 +10,15 @@
       margin: 0;
       padding: 0;
       display: flex;
-      justify-content: center;
+      
       align-items: center;
-      height: 100vh;
+
       color: white;
       background-image: url(academate2.png);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
+    
 
     }
     
@@ -28,10 +29,15 @@
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       font-size: x-small;
+      height: 560px;
+      align-items: center;
+      
     }
+  
 
     .uinput {
       margin-bottom: 10px;
+ 
     }
 
     .uinput label {
@@ -71,49 +77,144 @@
     h2{
          text-wrap: auto;
          text-align: center;
+         margin-top: 50%;
+
     }
     img{
       width: 200px;
       text-align: center;
     }
-   
+   .welcome, .register{
+      margin-top: 0px;
+      margin-left: 300px;
+      font-family: "Poppins", sans-serif;
+      height: 20%;
+      width: 50%;
+      word-wrap: break-word;
+      background-color: #426028ef;
+      border-radius: 5px;
+   }
+   .welcometext{
+    margin: 50px;
+   }
+   .welcome input[type="button"],
+.register input[type="button"],
+.register input[type="submit"] {
+  background-color: #45a049;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.welcome input[type="button"]:hover,
+.register input[type="button"]:hover,
+.register input[type="submit"]:hover {
+  background-color: #40944a;
+}
+.register label{
+  font-weight: 500;
+}
    
     
   </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 
 
 <body>
 
   <div class="moscacontainer">
-    <img src="logo2.png">
-    <h2>Register</h2>
+    <form action="#" method="post">
+    <h2>Log In</h2><br>
+     
       <div class="uinput">
-        <label>Full Name:</label>
-        <input type="text" required>
-      </div>
-      <div class="uinput">
+      
         <label>Email Address:</label>
         <input type="text" required>
       </div>
       <div class="uinput">
-        <label>Password: </label>
-        <input type="text" required>
-      </div>
-      <div class="uinput">
-        <label>Confirm Password:</label>
-        <input type="text" required>
-      </div>
- 	<div class="uinput">
-        <label>Contact Number:</label>
-        <input type="text" required>
-       </div>
+        <label>Password:</label>
+        <input type="text" required></div>
+      
       <div class="uinput">
         <input type="submit" value="Submit">
-        <a href="Index_.html">Already have an account?</a>
+        <a href="index.html">Lost Password?</a>
        <br><br> <a href="Home.html">Continue without account</a>
       </div>
     </form>
   </div>
+
+<!---------------------------------------------------------------->
+
+  <div class="welcome" id="welcomeContainer">
+    <div class="welcometext">
+      <h1> WELCOME TO ACADEMATE </h1>
+      <p> Struggling to keep up with your academic commitments? Worry no more! Academate is here to be your study companion. 
+         Take charge of your academic life, boost productivity, and stay organized with Academate. Sign-up now and unlock a world of stress-free studying. Your success story starts here.</p>
+      <input type="button" value="Register now">
+    </div>
+  </div>
+  
+<!-------------------------------------------------------------------->
+
+  <div class="register" id="register" style="display: none;">
+    <form action="#" method="post">
+      <div class="welcometext">
+        <h1> REGISTRATION </h1>
+       
+        <div class="uinput">
+          <label>Username:</label>
+          <input type="text" required>
+        </div>
+        <div class="uinput">
+          <label>Email Address:</label>
+          <input type="email" required>
+        </div>
+        <div class="uinput">
+          <label>Password:</label>
+          <input type="text" required>
+        </div>
+        <div class="uinput">
+          <label>Confirm Password:</label>
+          <input type="text" required>
+        </div>
+       
+        <div>
+        <input type="submit" value="Register">
+        </form>
+
+        <input type="button" value="Close" onclick="toggleregister()">
+      </div>
+    </form>
+  </div>
+        </div>
+  
+
+  </div>
+
+
+
+<script>
+ function toggleregister() {
+    var welcomeContainer = document.getElementById("welcomeContainer");
+    var register = document.getElementById("register");
+
+    if (welcomeContainer.style.display !== "none") {
+      welcomeContainer.style.display = "none";
+      register.style.display = "block";
+    } else {
+      welcomeContainer.style.display = "block";
+      register.style.display = "none";
+    }
+  }
+
+  var registerButton = document.querySelector(".welcome input[type='button']");
+  registerButton.addEventListener("click", toggleregister);
+</script>
+</script>
 </body>
 </html>
