@@ -1,11 +1,91 @@
  <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
   <title>Academate</title>
     <link rel="icon" type="image/png" href="favicon.png">
 <style>
-        
-.header {
+     
+     
+
+     @media (max-width: 768px) {
+        .header {
+background-color: #426028;
+padding: 2px;
+text-align: center;
+color: white;
+font-family: Helvetica;
+width: 110%;
+margin-left: -8px;
+margin-top: -8px;
+}
+
+
+
+body{
+    background-image: url(academate1.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow-x: hidden;
+}
+
+.header nav a {
+text-align: center;
+color: white;
+}
+
+.header hr {
+border: none;
+height: 1px;
+background-color: white;
+margin-bottom: 1px;
+}
+.logo{
+    width: 150px;
+    margin-left: -30px;
+    margin-top: 0;
+}
+a {
+margin-right: 15px;
+text-decoration: none;
+}
+.help {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #426028;
+    color: aliceblue;
+    border-radius: 20px;
+    width: 500px;
+    min-width: 100px;
+    position: absolute;
+    margin-top: 20px;
+    
+}
+h2, p, label {
+   margin-left: 10px;
+}
+.drag{
+    width: 400px;
+}
+img{
+    position: relative;
+    border-radius: 25px;
+    margin-top: 20px;
+}
+.inpot{
+margin-top: 115px;
+} 
+.images{
+position: relative;
+margin-top: 800px;
+}
+    }
+
+    /* ------------------------------- */
+    @media (min-width: 769px) {
+        .header {
 background-color: #426028;
 padding: 2px;
 text-align: center;
@@ -72,6 +152,8 @@ img{
 .inpot{
 margin-top: 115px;
 }
+    }
+
 
 
 </style>
@@ -113,11 +195,12 @@ margin-top: 115px;
 
 
       </div>
+      <div class="images">
       <img src="inpot.gif" class="inpot">
       <img src="drag.gif" class="drag">
       <img src="line.gif" class="drag">
       <img src="close.gif" class="drag">
-
+      </div>
     
 </body>
 </html>
