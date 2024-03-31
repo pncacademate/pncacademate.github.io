@@ -147,3 +147,14 @@ font-size: smaller;
     width: 150px;
     margin-left: -30px;
 }
+
+.editButton {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    color: #fff;
+    cursor: pointer;
+}

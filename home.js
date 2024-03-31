@@ -64,13 +64,14 @@ function newElement() {
     var formattedDeadline = formatDateTime(deadlineValue);
     var formattedTime = formatTime(timeValue);
 
-    var formattedTaskDescription = taskDescriptionValue ? "-" + taskDescriptionValue + "" : ""; // Add task description with format "-(task description)"
+    var formattedTaskDescription = taskDescriptionValue ? "-" + taskDescriptionValue + "" : ""; 
 
     var formattedTask = "<div class='task-input'>" + inputValue + "</div>" +
                         "<div class='task-description'>" + formattedTaskDescription + "</div>" +
                         "<div class='task-details'>" +
                         "<p>Task Time: " + formattedTime + " | Deadline at: " + formattedDeadline + "</p>" +
-                        "</div>";
+                        "</div>" +
+                        "<button class='editButton' onclick='editTaskDescription(this.parentNode)'>\u270E</button>"; 
 
     var li = document.createElement("li");
     li.style.fontFamily = "Verdana"; 
@@ -112,6 +113,7 @@ function newElement() {
     document.getElementById("fontSizeInput").value = ""; 
     saveTasks();
 }
+
 
 
 
@@ -216,3 +218,105 @@ window.onload = function() {
 }
 
 
+function editTaskDescription(taskDiv) {
+    var newDescription = prompt("Enter the new task description:");
+    if (newDescription !== null) {
+        var descriptionElement = taskDiv.querySelector('.task-description');
+        descriptionElement.textContent = "- " + newDescription;
+
+        var parentLi = taskDiv.parentNode;
+        parentLi.classList.toggle('done');
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+function editTask(button) {
+    var modal = document.getElementById("editTaskModal");
+    modal.style.display = "block";
+
+    // Find the task container
+    var taskContainer = button.parentNode;
+    var taskTitle = taskContainer.querySelector('.task-input').textContent;
+    var taskDescription = taskContainer.querySelector('.task-description').textContent.replace('-', '').trim();
+    var taskFontSize = taskContainer.parentNode.style.fontSize.replace('px', '');
+    var taskDeadline = taskContainer.querySelector('.task-details p').textContent.split('Deadline at: ')[1];
+    var taskTime = taskContainer.querySelector('.task-details p').textContent.split('Task Time: ')[1].split(' |')[0].trim();
+
+    // Populate the modal inputs with task details
+    document.getElementById("editTaskInput").value = taskTitle;
+    document.getElementById("editTaskDescription").value = taskDescription;
+    document.getElementById("editTaskDeadline").value = taskDeadline;
+    document.getElementById("editTaskTime").value = taskTime;
+    document.getElementById("editFontSizeInput").value = taskFontSize;
+
+    // Add an event listener to handle changes in font size
+    document.getElementById("editFontSizeInput").addEventListener("change", function() {
+        taskContainer.parentNode.style.fontSize = this.value + "px";
+    });
+
+    // Store the task container for later use when saving changes
+    modal.selectedTaskContainer = taskContainer;
+
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+
+    // Refresh the displayed tasks
+    displayTasks();
+}
+
+
+function closeEditModal() {
+    var modal = document.getElementById("editTaskModal");
+    modal.style.display = "none";
+}
+
+function saveEditedTask() {
+    // Fetch edited values
+    var editedTitle = document.getElementById("editTaskInput").value.trim();
+    var editedDescription = document.getElementById("editTaskDescription").value.trim();
+    var editedDeadline = document.getElementById("editTaskDeadline").value;
+    var editedTime = document.getElementById("editTaskTime").value;
+    var editedFontSize = document.getElementById("editFontSizeInput").value;
+
+    // Find the selected task
+    var selectedTask = document.querySelector(".task-container.selected");
+
+    // Update task title
+    selectedTask.querySelector('.task-input').textContent = editedTitle;
+
+    // Update task description
+    selectedTask.querySelector('.task-description').textContent = editedDescription ? "-" + editedDescription : "";
+
+    // Update task font size
+    selectedTask.parentNode.style.fontSize = editedFontSize + "px";
+
+    // Update task deadline
+    var formattedDeadline = formatDateTime(editedDeadline);
+    selectedTask.querySelector('.task-details p').innerHTML = "Task Time: " + formatTime(editedTime) + " | Deadline at: " + formattedDeadline;
+
+    // Close the modal
+    closeEditModal();
+
+    // Save the changes
+    saveTasks();
+}
+
+
+
+*/
